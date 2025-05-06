@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions - Kemebos Schools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #C5A000;
+            --white: #FFFFFF;
+            --black: #000000;
+            --red: #C8102E;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+
+        .school-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--gold);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            color: var(--white);
+        }
+
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .motto {
+            max-width: 60%;
+        }
+
+        .motto h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .motto p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .admission-title {
+            font-size: 4rem;
+            font-style: italic;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transform: rotate(-5deg);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        /* Main Content Sections */
+        .admission-section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--red);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--gold);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .admission-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .admission-text {
+            flex: 1;
+        }
+
+        .admission-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 350px;
+        }
+
+        .admission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .requirements-list {
+            margin-top: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .requirements-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .requirements-list li::before {
+            content: '•';
+            color: var(--gold);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .highlight {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .note-box {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* Alternate Section Backgrounds */
+        .admission-section:nth-child(even) {
+            background-color: var(--gray);
+        }
+
+        /* How to Apply Section */
+        .apply-section {
+            padding: 5rem 10%;
+            text-align: center;
+        }
+
+        .apply-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .apply-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .apply-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 350px;
+        }
+
+        .apply-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 10% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--dark-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .motto {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .admission-title {
+                writing-mode: horizontal-tb;
+                transform: rotate(0);
+            }
+
+            .admission-container, .apply-container {
+                flex-direction: column;
+            }
+
+            .admission-image, .apply-image {
+                width: 100%;
+                order: -1;
+            }
+
+            .admission-section, .apply-section {
+                padding: 4rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 82px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 82px);
+                background-color: var(--black);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero {
+                height: auto;
+                padding: 4rem 5%;
+            }
+
+            .admission-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .school-name {
+                font-size: 1.2rem;
+            }
+
+            .motto h1 {
+                font-size: 2rem;
+            }
+
+            .admission-title {
+                font-size: 2.5rem;
+            }
+
+            .admission-section, .apply-section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="D:\project\logo.png" width="50" height="50" alt="Kemebos Schools Logo">
+            <span class="school-name">Kemebos Schools</span>
+        </div>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="home2.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="academics2.html">Academics</a></li>
+            <li><a href="schoollife.html">School Life</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="motto">
+                <h1>"Education for Outstanding Heights"</h1>
+                <p>At Kemebos Schools, we nurture young minds to become leaders of tomorrow, grounded in strong values and academic excellence.</p>
+            </div>
+            <div class="admission-title">Admissions</div>
+        </div>
+    </section>
+
+    <!-- Advanced Level Section -->
+    <section class="admission-section">
+        <h2 class="section-title">Advanced Level</h2>
+        <div class="admission-container">
+            <div class="admission-text">
+                <p>Students joining Form Five should have the following qualifications:</p>
+                <ul class="requirements-list">
+                    <li>To join our vibrant learning community, applicants must have sat for the most recent CSE Examination and achieved Division I.</li>
+                    <li>For Science Streams (PCM/PCB): A minimum of 6 points in the combination subjects is required, with no grade lower than a B in any subject.</li>
+                    <li>For Arts Streams (EGM, HE, HKL): We welcome passionate learners with Division II, provided they score at least a B in their combination subjects.</li>
+                    <li>Prospective students can collect application forms directly from the school.</li>
+                </ul>
+                <div class="note-box">
+                    <p><strong>Admission Process:</strong><br>
+                    Each candidate will undergo a tailored written and oral interview based on their grade level, ensuring we identify and nurture their unique potential.</p>
+                    <p>At Kemebos, we don't just admit students—we invest in future leaders. Ready to begin your journey?</p>
+                </div>
+            </div>
+            <div class="admission-image">
+                <img src="D:\project\education1.jfif" alt="Advanced Level Students">
+            </div>
+        </div>
+    </section>
+
+    <!-- Secondary Level Section -->
+    <section class="admission-section">
+        <h2 class="section-title">Secondary Level</h2>
+        <div class="admission-container">
+            <div class="admission-text">
+                <p>Students joining Form One should have the following qualifications:</p>
+                <h3>Form One Admission Requirements at Kemebos Schools</h3>
+                <p>We're looking for bright young scholars ready to excel! To join our Form One class, students must meet these criteria:</p>
+                
+                <h4>Educational Background</h4>
+                <ul class="requirements-list">
+                    <li>Must have successfully completed primary education</li>
+                    <li>Must have passed the Standard Seven National Examinations</li>
+                </ul>
+                
+                <h4>Entrance Evaluation</h4>
+                <ul class="requirements-list">
+                    <li>All applicants take our Science and Mathematics entrance exam</li>
+                    <li>Must achieve a minimum score of 80% to advance</li>
+                </ul>
+                
+                <h4>Two-Stage Selection Process</h4>
+                <ul class="requirements-list">
+                    <li>First Round: Multiple-choice written test (designed to assess true understanding beyond guessing)</li>
+                    <li>Second Round: Personal oral interview for top performers</li>
+                </ul>
+                
+                <h4>Final Admission Steps</h4>
+                <ul class="requirements-list">
+                    <li>Successful candidates receive official joining instructions</li>
+                    <li>Enrollment is confirmed upon completion of first payment</li>
+                </ul>
+                
+                <div class="note-box">
+                    <p>At Kemebos, we don't just admit students - we welcome future leaders!</p>
+                </div>
+            </div>
+            <div class="admission-image">
+                <img src="D:\project\edu.png" alt="Secondary Level Students">
+            </div>
+        </div>
+    </section>
+
+    <!-- Primary Education Section -->
+    <section class="admission-section">
+        <h2 class="section-title">Primary Education</h2>
+        <div class="admission-container">
+            <div class="admission-text">
+                <p>For primary education the student must have the following qualifications:</p>
+                <h3>Admission Requirements for Grade One at Kemebos Schools</h3>
+                <p>We welcome bright young learners to begin their primary education journey with us! To join our Grade One class, students must:</p>
+                
+                <ul class="requirements-list">
+                    <li>Be graduates from a recognized Nursery program</li>
+                    <li>Have successfully mastered foundational skills in:
+                        <ul class="requirements-list">
+                            <li>Writing (letter formation & basic words)</li>
+                            <li>Reading (simple words and sentences)</li>
+                            <li>Arithmetic (numbers 1-100 & basic operations)</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="note-box">
+                    <p>Our admission process ensures every child has the necessary building blocks to thrive in our vibrant learning environment.</p>
+                    <p>At Kemebos, we nurture curious minds from their very first academic steps!</p>
+                </div>
+            </div>
+            <div class="admission-image">
+                <img src="D:\project\education.png" alt="Primary Education Students">
+            </div>
+        </div>
+    </section>
+
+    <!-- Kindergarten Section -->
+    <section class="admission-section">
+        <h2 class="section-title">Kindergarten</h2>
+        <div class="admission-container">
+            <div class="admission-text">
+                <p>The requirements for kids to join us in kindergarten are:</p>
+                <h3>Early Years Admissions at Kemebos Schools</h3>
+                <p>We welcome bright young learners to begin their educational journey in our nurturing kindergarten program:</p>
+                
+                <h4>Age Requirements:</h4>
+                <ul class="requirements-list">
+                    <li>Children may join our kindergarten program starting at 3 years of age</li>
+                </ul>
+                
+                <h4>Program Structure:</h4>
+                <p>Our kindergarten is divided into three developmental stages:</p>
+                <ul class="requirements-list">
+                    <li>KG1 (Foundational year)</li>
+                    <li>KG2 (Building year)</li>
+                    <li>KG3 (Transition year)</li>
+                </ul>
+                
+                <h4>Admission Process:</h4>
+                <p>Each applicant undergoes a gentle, age-appropriate assessment:</p>
+                <ul class="requirements-list">
+                    <li>Verbal evaluation to observe communication skills</li>
+                    <li>Interactive activities to assess readiness for their joining level</li>
+                </ul>
+                
+                <div class="note-box">
+                    <p>At Kemebos, we make first school experiences joyful while ensuring every child is placed in the perfect environment to blossom!</p>
+                </div>
+            </div>
+            <div class="admission-image">
+                <img src="D:\project\primaryclass.jfif" alt="Kindergarten Students">
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Apply Section -->
+    <section class="apply-section">
+        <h2 class="section-title">How to Apply</h2>
+        <div class="apply-container">
+            <div class="apply-text">
+                <p><span class="highlight">Students interested in joining the Kemebos School are welcome to get the applications forms at the school.</span></p>
+                <p>An interview will be conducted (Written and oral) according to ones grade level they might be conducted at school or in the designated location as instructed.</p>
+                <p>For more information about the admission process, please contact our admissions office or visit us during working hours.</p>
+                <div class="note-box" style="margin-top: 2rem;">
+                    <p>We look forward to welcoming you to the Kemebos family, where we nurture excellence and build future leaders!</p>
+                </div>
+            </div>
+            <div class="apply-image">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="School Building">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>Kemebos Schools is a premier educational institution dedicated to academic excellence and holistic development of students.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="home2.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="academics2.html">Academics</a></li>
+                        <li><a href="schoollife.html">School Life</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Our Programs</h3>
+                <ul class="footer-links">
+                    <li><a href="aboutus.html">Primary Education</a></li>
+                    <li><a href="aboutus.html">Secondary Education (O-Level)</a></li>
+                    <li><a href="aboutus.html">Advanced Level (A-Level)</a></li>
+                    <li><a href="schoollife.html">Boarding Facilities</a></li>
+                    <li><a href="schoollife.html">Extracurricular Activities</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter to receive updates on school news and events.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2007-2023 Kemebos Schools. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger menu
+            hamburgerMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        hamburgerMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('.admission-section, .apply-section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if(sectionTop < windowHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animation
+        document.querySelectorAll('.admission-section, .apply-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Run animation on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

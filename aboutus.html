@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kemebos Schools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #C5A000;
+            --white: #FFFFFF;
+            --black: #000000;
+            --red: #D10000;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--black);
+            border-color: var(--black);
+        }
+        
+        .btn-dark {
+            background-color: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+        
+        .btn-dark:hover {
+            background-color: transparent;
+            color: var(--black);
+        }
+        
+        .btn-red {
+            background-color: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+        
+        .btn-red:hover {
+            background-color: transparent;
+            color: var(--red);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--black);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--gold);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--black);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        ul li {
+            margin-bottom: 8px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--black);
+            margin-bottom: 0;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--black);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 80px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav li {
+            margin: 15px 0;
+        }
+        
+        .mobile-nav li a {
+            font-size: 1.2rem;
+            padding: 10px 0;
+            display: block;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* About Section */
+        .about-school {
+            background-color: var(--white);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .founder {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .founder img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 5px solid var(--gold);
+        }
+        
+        .founder-info h4 {
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+        
+        .founder-info p {
+            font-style: italic;
+            color: var(--dark-gray);
+        }
+        
+        /* Programs Section */
+        .programs {
+            background-color: var(--light-gray);
+        }
+        
+        .program-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .program-card {
+            flex: 1 1 300px;
+            margin: 15px;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .program-card h3 {
+            color: var(--black);
+        }
+        
+        .subject-list {
+            columns: 2;
+            column-gap: 30px;
+        }
+        
+        .subject-list li {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .subject-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        .combination-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .combination-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-col {
+            flex: 1 1 250px;
+            margin: 15px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            padding: 0 20px;
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--dark-gold);
+        }
+        
+        .quick-links ul {
+            list-style: none;
+        }
+        
+        .quick-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .quick-links ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .quick-links ul li a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .founder {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .founder img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .subject-list {
+                columns: 1;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                height: 50vh;
+            }
+            
+            .footer-col {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+            
+            .footer-col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .quick-links ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .quick-links ul li {
+                margin: 0 10px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="D:\project\logo.png" alt="Kemebos Schools Logo">
+                <h1>Kemebos <span>Schools</span></h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="home2.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="academics2.html">Academics</a></li>
+                    <li><a href="schoollife.html">School Life</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    
+                </ul>
+            </nav>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="overlay"></div>
+            
+            <div class="mobile-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Education for Outstanding Heights</h1>
+                <p>Discover the excellence of Kemebos Schools - nurturing minds, shaping futures since 2007</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About School Section -->
+    <section class="about-school">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Kemebos Schools</h2>
+                <p>Kemebos Schools is the premier educational institution in Tanzania, founded by Hon. Kaizirege in 2007 in Kagera, Bukoba, just 6km from Bukoba Municipal. Our institution has grown to become a beacon of academic excellence, consistently producing top-performing students in national examinations.</p>
+                
+                <div class="founder">
+                    <img src="D:\project\ceo1.png" alt="Hon. Kaizirege">
+                    <div class="founder-info">
+                        <h4>Hon. Kaizirege</h4>
+                        <p>Founder of Kemebos Schools</p>
+                        <p>"Education is the most powerful weapon which you can use to change the world."</p>
+                    </div>
+                </div>
+                
+                <p>At Kemebos Schools, our dedicated staff and teachers are committed to delivering the NECTA syllabuses while supplementing with additional extracurricular courses. This holistic approach ensures our students excel not only academically but also develop socially and personally.</p>
+                
+                <p>We take pride in our teaching capabilities and our unwavering commitment to ensuring that every student at Kemebos Schools passes their examinations with flying colors. Our track record speaks for itself, with consistent top rankings in national results year after year.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Programs Section -->
+    <section class="programs">
+        <div class="container">
+            <h2>Our Educational Programs</h2>
+            <p class="text-center">Kemebos Schools offer a comprehensive range of competent education from primary to secondary education, providing students with a diverse array of subjects and engaging extracurricular activities that stimulate both mind and body.</p>
+            
+            <div class="program-cards">
+                <!-- Primary Education -->
+                <div class="program-card">
+                    <h3>Primary Education (Grade 1 - Grade 7)</h3>
+                    <p>At Kemebos Schools, we take pride in offering an exceptional primary education journey from Grade 1 through Grade 7, where every child is nurtured to thrive academically, socially, and personally. Our dedicated educators create a vibrant and supportive learning environment, blending innovative teaching methods with a well-rounded curriculum to spark curiosity, build confidence, and lay a strong foundation for lifelong success.</p>
+                    <p>With a focus on holistic development, we ensure each student receives individualized attention, fostering not just academic excellence but also character growth and creativity. At Kemebos, we don't just teach—we inspire, empower, and prepare your child for a bright future, making learning an exciting and rewarding adventure every step of the way.</p>
+                    
+                    <h4>Courses We Offer:</h4>
+                    <ul class="subject-list">
+                        <li>Kiswahili</li>
+                        <li>Mathematics</li>
+                        <li>Science</li>
+                        <li>Geography</li>
+                        <li>Civics</li>
+                        <li>History</li>
+                        <li>English language</li>
+                        <li>Vocational subjects</li>
+                        <li>French</li>
+                        <li>Information and Communication Technology</li>
+                        <li>School sports</li>
+                    </ul>
+                </div>
+                
+                <!-- Secondary Education -->
+                <div class="program-card">
+                    <h3>Secondary Education (Form 1 - Form 4)</h3>
+                    <p>At Kemebos Schools, we offer an outstanding secondary education from Form 1 to Form 4, designed to equip students with the knowledge, skills, and confidence they need to excel in their academic and future careers. Our dynamic curriculum covers essential subjects, delivered by passionate teachers who inspire a love for learning.</p>
+                    <p>With a perfect blend of rigorous academics, hands-on experiences, and personalized support, we ensure every student reaches their full potential. At Kemebos, we don't just educate—we shape future leaders, critical thinkers, and innovators, preparing them for success in national exams and beyond. Join us, and let's unlock your child's brightest future together!</p>
+                    
+                    <h4>Core Subjects:</h4>
+                    <ul class="subject-list">
+                        <li>Mathematics</li>
+                        <li>English</li>
+                        <li>Kiswahili</li>
+                        <li>Biology</li>
+                        <li>Civics</li>
+                        <li>Physics</li>
+                        <li>Chemistry</li>
+                        <li>Geography</li>
+                        <li>History</li>
+                    </ul>
+                </div>
+                
+                <!-- A-Level Education -->
+                <div class="program-card">
+                    <h3>A-Level Education (Form 5 - Form 6)</h3>
+                    <p>At Kemebos Schools, we offer an exceptional A-Level education (Form 5 to Form 6) designed to shape future leaders, innovators, and scholars through a rigorous and inspiring academic journey. Students can choose from specialized combinations, each tailored to unlock their intellectual potential and career aspirations.</p>
+                    <p>With expert educators, cutting-edge resources, and a nurturing learning environment, we cultivate critical thinking, creativity, and excellence, ensuring students excel in both national and global examinations. At Kemebos, we don't just prepare students for exams; we empower them for university success and beyond, turning ambitions into achievements.</p>
+                    
+                    <h4>Available Combinations:</h4>
+                    <ul class="combination-list">
+                        <li><strong>PCM</strong> – (Physics, Chemistry, Advanced Mathematics)</li>
+                        <li><strong>PCB</strong> – (Physics, Chemistry, Biology)</li>
+                        <li><strong>PGM</strong> – (Physics, Geography, Advanced Mathematics)</li>
+                        <li><strong>HGL</strong> – (History, Geography, Language)</li>
+                        <li><strong>ECA</strong> – (Economics, Commerce, Accounting)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About Kemebos</h3>
+                    <p>Kemebos Schools is a premier educational institution in Tanzania, committed to academic excellence and holistic student development since 2007.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Programs</h3>
+                    <ul>
+                        <li><a href="aboutus.html">Primary Education</a></li>
+                        <li><a href="aboutus.html">Secondary Education (O-Level)</a></li>
+                        <li><a href="aboutus.html">Advanced Level (A-Level)</a></li>
+                        <li><a href="schoollife.html">Boarding Facilities</a></li>
+                        <li><a href="schoollife.html">Extracurricular Activities</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home2.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="academics2.html">Academics</a></li>
+                        <li><a href="schoollife.html">School Life</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to receive updates on school news and events.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2007-2024 Kemebos Schools. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.overlay');
+        
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        
+        overlay.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            this.classList.remove('active');
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+        
+        // Highlight current page in navigation
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a, .mobile-nav a').forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if(currentPage === linkPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

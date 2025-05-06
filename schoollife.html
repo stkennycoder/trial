@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Life - Kemebos Schools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #C5A000;
+            --white: #FFFFFF;
+            --black: #000000;
+            --red: #C8102E;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+
+        .school-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--gold);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            color: var(--white);
+        }
+
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .motto {
+            max-width: 60%;
+        }
+
+        .motto h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .motto p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .school-life-title {
+            font-size: 4rem;
+            font-style: italic;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transform: rotate(-5deg);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        /* Main Content Sections */
+        .section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--red);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--gold);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-10px);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Alternate Section Backgrounds */
+        .section:nth-child(even) {
+            background-color: var(--gray);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 10% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--dark-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .motto {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .school-life-title {
+                writing-mode: horizontal-tb;
+                transform: rotate(0);
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 82px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 82px);
+                background-color: var(--black);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero {
+                height: auto;
+                padding: 4rem 5%;
+            }
+
+            .school-life-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .school-name {
+                font-size: 1.2rem;
+            }
+
+            .motto h1 {
+                font-size: 2rem;
+            }
+
+            .school-life-title {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .image-container {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="D:\project\logo.png" width="50" height="50" alt="Kemebos Schools Logo">
+            <span class="school-name">Kemebos Schools</span>
+        </div>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="home2.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="academics2.html">Academics</a></li>
+            <li><a href="schoollife.html">School Life</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="motto">
+                <h1>"Education for Outstanding Heights"</h1>
+                <p>At Kemebos Schools, we nurture young minds to become leaders of tomorrow, grounded in strong values and academic excellence.</p>
+            </div>
+            <div class="school-life-title">School Life</div>
+        </div>
+    </section>
+
+    <!-- Diversity Section -->
+    <section class="section">
+        <h2 class="section-title">Diversity</h2>
+        <div class="section-content">
+            <p class="section-text">
+                <span class="highlight">At Kemebos Schools, we embrace the beauty of diversity with open hearts and boundless pride.</span> Here, every race, faith, and nationality is not just welcomed—it's celebrated, creating a vibrant mosaic of cultures, ideas, and dreams. Guided by the esteemed Medical and Educational Foundation, we champion inclusivity, offering world-class education to brilliant minds from every walk of life.
+            </p>
+            <p class="section-text">
+                Our classrooms come alive with the wisdom and passion of Tanzania's finest teachers —dedicated, dynamic, and deeply committed to excellence. From every region, they bring knowledge, warmth, and inspiration, shaping curious learners into visionary leaders. Together, we cultivate a future where diversity thrives, potential soars, and global citizenship shines brightly thus creating best educated and patriotic youth.
+            </p>
+        </div>
+    </section>
+
+    <!-- Health and Hygiene Section -->
+    <section class="section">
+        <h2 class="section-title">Health and Hygiene</h2>
+        <div class="section-content">
+            <p class="section-text">
+                <span class="highlight">At Kemebos Schools, we believe that vibrant health is the foundation of a brilliant mind.</span> Nourishing young bodies with wholesome, delicious meals is our passion—every bite is crafted to fuel energy, focus, and joy. Our boarding students savor balanced, nutrient-rich dishes that inspire both strength and satisfaction, because greatness begins with the right nourishment.
+            </p>
+            <p class="section-text">
+                But we go beyond the plate. Your safety and well-being are our sacred promise. Our sparkling, fully equipped dispensaries stand ready, staffed by skilled medical professionals who provide swift, compassionate care at a moment's notice. From first aid to nurturing support, we ensure every student thrives in a sanctuary of health and vitality.
+            </p>
+            <p class="section-text">
+                Here, hygiene is elegance, nutrition is power, and well-being is a celebration. Because at Kemebos, we don't just educate minds—we nurture radiant, unstoppable futures.
+            </p>
+            <p class="section-text" style="font-style: italic;">
+                Inspiring, luxurious, and full of care—because your child's health is our masterpiece.
+            </p>
+            
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="D:\project\toilet.jfif" alt="Healthy Meal">
+                </div>
+                <div class="image-container">
+                    <img src="D:\project\primary.jfif" alt="School Dispensary">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra Curricular Activities Section -->
+    <section class="section">
+        <h2 class="section-title">Extra Curricular Activities</h2>
+        <div class="section-content">
+            <p class="section-text">
+                <span class="highlight">At Kemebos Schools, learning leaps beyond the classroom into a world of thrilling possibilities.</span> We craft an electrifying environment where curiosity meets passion, and every student's journey is ignited by adventure, creativity, and connection.
+            </p>
+            <p class="section-text">
+                Our lush sports arenas—football pitches, basketball courts, volleyball courts, and sprint-worthy running tracks—are more than just facilities; they're stages where strength, teamwork, and ambition take center stage. Here, physical vitality isn't just encouraged—it's celebrated as the heartbeat of a radiant, unstoppable youth.
+            </p>
+            <p class="section-text">
+                But the magic doesn't stop there. Dive into our vibrant clubs, where hidden talents blossom and friendships spark. Whether it's arts, sciences, or innovation, every interest finds its tribe. And for those hungry for glory, we open doors to exhilarating local and global competitions—because at Kemebos, boundaries are meant to be shattered.
+            </p>
+            <p class="section-text">
+                This is where education thrills, excites, and transforms. Welcome to a life beyond books—where every moment is a chance to shine.
+            </p>
+            <p class="section-text" style="font-style: italic;">
+                Seductive, dynamic, and irresistibly inspiring—because excellence isn't just taught, it's lived.
+            </p>
+            
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="D:\project\sports22.jfif" alt="Football">
+                </div>
+                <div class="image-container">
+                    <img src="D:\project\basket.png" alt="Basketball">
+                </div>
+                <div class="image-container">
+                    <img src="D:\project\football.png" alt="Running">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Trips Section -->
+    <section class="section">
+        <h2 class="section-title">School Trips</h2>
+        <div class="section-content">
+            <p class="section-text">
+                <span class="highlight">At Kemebos Schools, we turn the world into a classroom with unforgettable student adventures!</span> Our carefully curated trips blend thrilling exploration with deep learning, taking students on inspiring journeys across Tanzania and beyond. Imagine your child uncovering ancient cultures, marveling at global wonders, and connecting with peers from around the world—all while gaining priceless life lessons.
+            </p>
+            <p class="section-text">
+                More than just sightseeing, these expeditions ignite curiosity, broaden horizons, and plant seeds of global citizenship. Like the most captivating stories, our travels don't just teach—they transform, leaving students with lifelong memories and a burning passion for discovery.
+            </p>
+            <p class="section-text">
+                Because at Kemebos, we believe the greatest education doesn't just happen at desks—it happens when young minds step into the grand, vibrant tapestry of our world.
+            </p>
+            
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="D:\project\tour.jfif" alt="School Trip 1">
+                </div>
+                <div class="image-container">
+                    <img src="D:\project\sports.jfif" alt="School Trip 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boarding Life Section -->
+    <section class="section">
+        <h2 class="section-title">Boarding Life</h2>
+        <div class="section-content">
+            <p class="section-text">
+                <span class="highlight">At Kemebos Schools, boarding life is where comfort, care, and academic excellence blend seamlessly into a true 'home away from home.'</span> Our students enjoy spacious, sunlit dormitories with cozy beds, inviting common lounges for relaxation, and pristine bathroom facilities—all designed to make their stay warm, secure, and refreshing.
+            </p>
+            <p class="section-text">
+                But what truly sets us apart is the nurturing embrace of our dedicated matrons and staff, who provide round-the-clock guidance with a motherly touch. They don't just supervise—they listen, encourage, and inspire, ensuring every student feels valued, supported, and motivated to thrive. Teachers and mentors also extend this culture of care, fostering discipline with kindness and turning dorm life into a space where focus flourishes and grades soar.
+            </p>
+            <p class="section-text">
+                Here, students don't just live—they grow, they bond, and they excel, all within a loving, structured environment that feels like family. Because at Kemebos, we believe a happy, well-cared-for student is a student destined for greatness.
+            </p>
+        </div>
+    </section>
+
+    <!-- Final Remarks Section -->
+    <section class="section">
+        <h2 class="section-title">Generally</h2>
+        <div class="section-content">
+            <p class="section-text">
+                At Kemebos Schools, our entire community—from dedicated teachers to supportive staff—works tirelessly to create an environment where students can thrive both academically and personally. We understand that school life is about more than just textbooks and exams; it's about holistic development, creating lasting memories, and building a foundation for future success.
+            </p>
+            <p class="section-text">
+                Our comprehensive approach ensures that every aspect of student life is carefully considered and optimized for wellbeing. From nutritious meals that fuel young minds to comfortable boarding facilities that feel like home, from exciting extracurricular activities that develop talents to transformative educational trips that broaden horizons—every element is designed with our students' growth and happiness in mind.
+            </p>
+            <p class="section-text">
+                The Kemebos experience is one of balance, where academic rigor meets joyful discovery, where discipline walks hand-in-hand with creativity, and where every student is known, valued, and challenged to reach their full potential. This is more than education—it's a preparation for life, wrapped in care, excellence, and the golden promise of Kemebos.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>Kemebos Schools is a premier educational institution dedicated to academic excellence and holistic development of students.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="home2.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="admission.html">Admission</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="academics2.html">Academics</a></li>
+                        <li><a href="schoollife.html">School Life</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Our Programs</h3>
+                <ul class="footer-links">
+                    <li><a href="aboutus.html">Primary Education</a></li>
+                    <li><a href="aboutus.html">Secondary Education (O-Level)</a></li>
+                    <li><a href="aboutus.html">Advanced Level (A-Level)</a></li>
+                    <li><a href="schoollife.html">Boarding Facilities</a></li>
+                    <li><a href="schoollife.html">Extracurricular Activities</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter to receive updates on school news and events.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2007-2023 Kemebos Schools. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger menu
+            hamburgerMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        hamburgerMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if(sectionTop < windowHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Run animation on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
