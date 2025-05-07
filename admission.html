@@ -27,6 +27,7 @@
             background-color: var(--white);
             color: var(--black);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header Styles */
@@ -61,16 +62,18 @@
         }
 
         /* Hamburger Menu */
-        .hamburger-menu {
+        #hamburger-menu {
             display: none;
             flex-direction: column;
             justify-content: space-between;
             width: 30px;
             height: 21px;
             cursor: pointer;
+            position: relative;
+            z-index: 1001;
         }
 
-        .hamburger-menu span {
+        #hamburger-menu span {
             display: block;
             height: 3px;
             width: 100%;
@@ -79,13 +82,25 @@
             transition: all 0.3s ease;
         }
 
-        .nav-links {
+        #hamburger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        #hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #hamburger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        #nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-links a {
+        #nav-menu a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
@@ -94,25 +109,82 @@
             position: relative;
         }
 
-        .nav-links a:hover {
+        #nav-menu a:hover {
             color: var(--gold);
         }
 
-        .nav-links a::after {
+        #nav-menu a::after {
             content: '';
             position: absolute;
-            width: 0;
+            right: 0;
             height: 2px;
             background: var(--gold);
             bottom: -5px;
-            left: 0;
-            transition: width 0.3s ease;
+            right: 50px;
+            transition: right 0.3s ease;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        #nav-menu a:hover::after {
+            right: 300px;
         }
 
+        /* Mobile Menu Styles */
+        @media (max-width: 768px) {
+            #hamburger-menu {
+                display: flex;
+            }
+
+            #nav-menu {
+                position: fixed;
+                top: 82px;
+                right: -300px; /* Start off-screen to the right */
+                width: 250px; /* Narrower width */
+                height: auto;
+                background-color: var(--black);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+                gap: 1rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                border-radius: 5px 0 0 5px;
+                box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+            }
+
+            #nav-menu.active {
+                right: 0;
+            }
+
+            #nav-menu a {
+                padding: 0.5rem;
+                width: 100%;
+            }
+
+            #nav-menu a::after {
+                display: none;
+            }
+            
+            /* Overlay for when menu is open */
+            .overlay {
+                position: fixed;
+                top: 82px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            
+            .overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        /* Rest of your existing CSS remains the same */
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
@@ -161,6 +233,14 @@
         /* Main Content Sections */
         .admission-section {
             padding: 5rem 10%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .admission-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -247,6 +327,14 @@
         .apply-section {
             padding: 5rem 10%;
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .apply-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .apply-container {
@@ -420,29 +508,6 @@
         }
 
         @media (max-width: 768px) {
-            .hamburger-menu {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 82px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 82px);
-                background-color: var(--black);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 2rem;
-                gap: 2rem;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
             .hero {
                 height: auto;
                 padding: 4rem 5%;
@@ -491,14 +556,14 @@
         </div>
         
         <!-- Hamburger Menu -->
-        <div class="hamburger-menu">
+        <div id="hamburger-menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
         
-        <!-- Navigation Links -->
-        <ul class="nav-links">
+        <!-- Navigation Menu -->
+        <ul id="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="aboutus.html">About Us</a></li>
             <li><a href="academics2.html">Academics</a></li>
@@ -506,8 +571,12 @@
             <li><a href="admission.html">Admission</a></li>
             <li><a href="gallery.html">Gallery</a></li>
         </ul>
+        
+        <!-- Overlay for mobile menu -->
+        <div class="overlay"></div>
     </header>
 
+    <!-- Rest of your HTML content remains the same -->
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -669,7 +738,7 @@
                 </div>
             </div>
             <div class="apply-image">
-                <img src="education.png" alt="School">
+                <img src="education.png" alt="School Building">
             </div>
         </div>
     </section>
@@ -680,11 +749,12 @@
             <div class="footer-column">
                 <h3>About Us</h3>
                 <p>Kemebos Schools is a premier educational institution dedicated to academic excellence and holistic development of students.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    
+                   <div class="social-links">
+                    <a href="https://www.facebook.com/groups/105143769529637/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/kemebosandkaizirege/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -692,11 +762,11 @@
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
                     <li><a href="index.html">Home</a></li>
-                        <li><a href="aboutus.html">About Us</a></li>
-                        <li><a href="admission.html">Admission</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="academics2.html">Academics</a></li>
-                        <li><a href="schoollife.html">School Life</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="academics2.html">Academics</a></li>
+                    <li><a href="schoollife.html">School Life</a></li>
                 </ul>
             </div>
             
@@ -728,65 +798,81 @@
 
     <script>
         // Hamburger Menu Toggle
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburgerMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Animate hamburger menu
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const overlay = document.querySelector('.overlay');
+        
+        // Toggle menu when hamburger is clicked
+        hamburgerMenu.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
             hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on overlay
+        overlay.addEventListener('click', () => {
+            hamburgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        // Close menu when clicking a nav link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+        
+        // Close menu when scrolling
+        window.addEventListener('scroll', () => {
+            if (navMenu.classList.contains('active')) {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            }
         });
 
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('.admission-section, .apply-section');
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                // Check if section is in viewport
+                if (scrollPosition + windowHeight > sectionTop + sectionHeight * 0.3) {
+                    section.classList.add('visible');
+                }
+            });
+        };
+
+        // Run animation on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if(navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        hamburgerMenu.classList.remove('active');
-                    }
                 }
             });
         });
-
-        // Animation on scroll
-        const animateOnScroll = () => {
-            const sections = document.querySelectorAll('.admission-section, .apply-section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if(sectionTop < windowHeight - 100) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Set initial state for animation
-        document.querySelectorAll('.admission-section, .apply-section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-
-        // Run animation on load and scroll
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
