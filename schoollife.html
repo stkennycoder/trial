@@ -64,55 +64,90 @@
         .hamburger-menu {
             display: none;
             flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
             cursor: pointer;
+            padding: 10px;
+            margin-left: auto; /* Push to the right */
         }
-
+        
         .hamburger-menu span {
             display: block;
+            width: 25px;
             height: 3px;
-            width: 100%;
             background-color: var(--gold);
-            border-radius: 3px;
+            margin: 3px 0;
             transition: all 0.3s ease;
         }
-
-        .nav-links {
+        
+        /* Navigation Menu */
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
         }
 
-        .nav-links a {
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
             position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-menu a:hover {
             color: var(--gold);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s ease;
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+                order: 2; /* Ensure it stays on the right */
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 82px;
+                right: -100%; /* Changed from left to right */
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 82px);
+                background-color: var(--black);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                transition: all 0.5s ease;
+                padding: 20px 0;
+                z-index: 1000;
+            }
+            
+            .nav-menu.active {
+                right: 0; /* Changed from left to right */
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Hamburger animation */
+            .hamburger-menu.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger-menu.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
+        /* Rest of your CSS remains the same */
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
@@ -370,29 +405,6 @@
         }
 
         @media (max-width: 768px) {
-            .hamburger-menu {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 82px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 82px);
-                background-color: var(--black);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 2rem;
-                gap: 2rem;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
             .hero {
                 height: auto;
                 padding: 4rem 5%;
@@ -445,14 +457,14 @@
         </div>
         
         <!-- Hamburger Menu -->
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburger-menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
         
         <!-- Navigation Links -->
-        <ul class="nav-links">
+        <ul class="nav-menu" id="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="aboutus.html">About Us</a></li>
             <li><a href="academics2.html">Academics</a></li>
@@ -462,6 +474,7 @@
         </ul>
     </header>
 
+    <!-- Rest of your HTML content remains the same -->
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -505,10 +518,10 @@
             
             <div class="image-gallery">
                 <div class="image-container">
-                    <img src="toilet.jfif" alt="Healthy Meal">
+                    <img src="D:\project\toilet.jfif" alt="Healthy Meal">
                 </div>
                 <div class="image-container">
-                    <img src="primary.jfif" alt="School Dispensary">
+                    <img src="D:\project\primary.jfif" alt="School Dispensary">
                 </div>
             </div>
         </div>
@@ -536,13 +549,13 @@
             
             <div class="image-gallery">
                 <div class="image-container">
-                    <img src="sports22.jfif" alt="Football">
+                    <img src="D:\project\sports22.jfif" alt="Football">
                 </div>
                 <div class="image-container">
-                    <img src="basket.png" alt="Basketball">
+                    <img src="D:\project\basket.png" alt="Basketball">
                 </div>
                 <div class="image-container">
-                    <img src="football.png" alt="Running">
+                    <img src="D:\project\football.png" alt="Running">
                 </div>
             </div>
         </div>
@@ -564,10 +577,10 @@
             
             <div class="image-gallery">
                 <div class="image-container">
-                    <img src="tour.jfif" alt="School Trip 1">
+                    <img src="D:\project\tour.jfif" alt="School Trip 1">
                 </div>
                 <div class="image-container">
-                    <img src="sports.jfif" alt="School Trip 2">
+                    <img src="D:\project\sports.jfif" alt="School Trip 2">
                 </div>
             </div>
         </div>
@@ -611,11 +624,11 @@
             <div class="footer-column">
                 <h3>About Us</h3>
                 <p>Kemebos Schools is a premier educational institution dedicated to academic excellence and holistic development of students.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+               <div class="social-links">
+                    <a href="https://www.facebook.com/groups/105143769529637/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/kemebosandkaizirege/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -657,67 +670,42 @@
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Hamburger Menu Toggle
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburgerMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navMenu = document.querySelector('.nav-menu');
             
-            // Animate hamburger menu
-            hamburgerMenu.classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if(navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        hamburgerMenu.classList.remove('active');
-                    }
+            // Toggle menu when hamburger is clicked
+            hamburgerMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Close menu when clicking anywhere outside
+            document.addEventListener('click', function(e) {
+                if (!navMenu.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+            
+            // Close menu when scrolling
+            window.addEventListener('scroll', function() {
+                if (navMenu.classList.contains('active')) {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
                 }
             });
         });
-
-        // Animation on scroll
-        const animateOnScroll = () => {
-            const sections = document.querySelectorAll('.section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if(sectionTop < windowHeight - 100) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Set initial state for animation
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-
-        // Run animation on load and scroll
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
