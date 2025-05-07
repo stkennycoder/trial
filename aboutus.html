@@ -187,14 +187,14 @@
             justify-content: space-between;
             width: 30px;
             height: 21px;
-            z-index: 1001;
+            z-index: 1000;
         }
         
         .hamburger span {
             display: block;
             height: 3px;
             width: 100%;
-            background-color: var(--black);
+            background-color: var(--gold);
             border-radius: 3px;
             transition: all 0.3s ease;
         }
@@ -241,7 +241,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--gold);
+            background-color: var(--black);
             transition: width 0.3s ease;
         }
         
@@ -258,7 +258,7 @@
             max-width: 300px;
             height: 100vh;
             background-color: var(--black);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: -5px 0 15px rgba(244, 248, 22, 0.774);
             z-index: 1000;
             transition: right 0.3s ease;
             padding: 80px 20px 20px;
@@ -493,32 +493,74 @@
             color: var(--black);
         }
         
+        /* Newsletter Form Styles */
         .newsletter-form {
-            display: flex;
             margin-top: 20px;
         }
         
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 30px 0 0 30px;
-            font-size: 1rem;
+        .newsletter-form .form-group {
+            margin-bottom: 15px;
         }
         
-        .newsletter-form button {
-            padding: 0 20px;
-            background-color: var(--gold);
-            color: var(--black);
-            border: none;
-            border-radius: 0 30px 30px 0;
-            font-weight: 600;
-            cursor: pointer;
+        .newsletter-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+        
+        .newsletter-form input,
+        .newsletter-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--gold);
+            border-radius: 5px;
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--white);
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
         
-        .newsletter-form button:hover {
+        .newsletter-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .newsletter-form input:focus,
+        .newsletter-form textarea:focus {
+            outline: none;
+            border-color: var(--dark-gold);
+            background-color: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+        
+        .newsletter-form input::placeholder,
+        .newsletter-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .newsletter-form .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .newsletter-form .submit-btn:hover {
             background-color: var(--dark-gold);
+            transform: translateY(-2px);
+        }
+        
+        .newsletter-form .submit-btn i {
+            margin-right: 8px;
         }
         
         .quick-links ul {
@@ -587,6 +629,10 @@
             .subject-list {
                 columns: 1;
             }
+            
+            .newsletter-form {
+                margin-top: 15px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -629,19 +675,18 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="logo.png" alt="Kemebos Schools Logo">
+                <img src="D:\project\logo.png" alt="Kemebos Schools Logo">
                 <h1>Kemebos <span>Schools</span></h1>
             </div>
             
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aboutus.html" class="active">About Us</a></li>
+                    <li><a href="home2.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
                     <li><a href="academics2.html">Academics</a></li>
                     <li><a href="schoollife.html">School Life</a></li>
                     <li><a href="admission.html">Admission</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    
                 </ul>
             </nav>
             
@@ -655,9 +700,9 @@
             
             <div class="mobile-nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="home2.html">Home</a></li>
                     <li><a href="aboutus.html" class="active">About Us</a></li>
-                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="academics2.html">Academics</a></li>
                     <li><a href="admission.html">Admission</a></li>
                     <li><a href="schoollife.html">School Life</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
@@ -684,7 +729,7 @@
                 <p>Kemebos Schools is the premier educational institution in Tanzania, founded by Hon. Kaizirege in 2007 in Kagera, Bukoba, just 6km from Bukoba Municipal. Our institution has grown to become a beacon of academic excellence, consistently producing top-performing students in national examinations.</p>
                 
                 <div class="founder">
-                    <img src="ceo1.png" alt="Hon. Kaizirege">
+                    <img src="D:\project\ceo1.png" alt="Hon. Kaizirege">
                     <div class="founder-info">
                         <h4>Hon. Kaizirege</h4>
                         <p>Founder of Kemebos Schools</p>
@@ -775,11 +820,11 @@
                     <h3>About Kemebos</h3>
                     <p>Kemebos Schools is a premier educational institution in Tanzania, committed to academic excellence and holistic student development since 2007.</p>
                     <div class="social-links">
-                    <a href="https://www.facebook.com/groups/105143769529637/"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/kemebosandkaizirege/?hl=en"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-linkedin-in"></i></a>
-                </div>>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 
                 <div class="footer-col">
@@ -796,7 +841,7 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="home2.html">Home</a></li>
                         <li><a href="aboutus.html">About Us</a></li>
                         <li><a href="admission.html">Admission</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
@@ -805,15 +850,22 @@
                     </ul>
                 </div>
                 
-                <div class="footer-column">
-     <div class="footer-col">
+                <div class="footer-col">
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter to receive updates on school news and events.</p>
                     <form class="newsletter-form" action="https://formspree.io/f/mqaqbakk" method="POST">
-                        <input type="email" placeholder="Your Email" required>
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
                     </form>
-                </div>     </div>
+                </div>
+            </div>
             
             <div class="copyright">
                 <p>&copy; 2007-2024 Kemebos Schools. All Rights Reserved.</p>
