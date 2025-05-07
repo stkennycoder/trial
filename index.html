@@ -115,7 +115,7 @@
             text-align: center;
         }
         
-                /* Header Styles */
+        /* Header Styles */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -271,6 +271,7 @@
             opacity: 1;
             visibility: visible;
         }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
@@ -600,28 +601,49 @@
             color: var(--black);
         }
         
+        /* Updated Newsletter Form Styles */
         .newsletter-form {
             display: flex;
+            flex-direction: column;
             margin-top: 20px;
         }
         
-        .newsletter-form input {
-            flex: 1;
+        .newsletter-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-form input,
+        .newsletter-form textarea {
+            width: 100%;
             padding: 12px;
-            border: none;
-            border-radius: 30px 0 0 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .newsletter-form input::placeholder,
+        .newsletter-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .newsletter-form textarea {
+            height: 100px;
+            resize: vertical;
         }
         
         .newsletter-form button {
-            padding: 0 20px;
+            padding: 12px 25px;
             background-color: var(--gold);
             color: var(--black);
             border: none;
-            border-radius: 0 30px 30px 0;
+            border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
         }
         
         .newsletter-form button:hover {
@@ -752,7 +774,6 @@
                     <li><a href="schoollife.html">School Life</a></li>
                     <li><a href="admission.html">Admission</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    
                 </ul>
             </nav>
             
@@ -821,19 +842,17 @@
     <section class="success">
         <div class="container">
             <h2>Our Success</h2>
-            <p>form four results</p></form>
+            <p>form four results</p>
             <table class="results-table">
                 <thead>
                     <tr>
                         <th>Year</th>
-                        <th>Division 1 </th>
+                        <th>Division 1</th>
                         <th>Division 2</th>
-                        <th>Division 3
-                        <th>Division 4
+                        <th>Division 3</th>
+                        <th>Division 4</th>
                         <th>Division 0</th>
                         <th>Link To Results</th>
-                            </th>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -854,7 +873,7 @@
                         <td>0</td>
                         <td>0</td>
                         <td><a href="https://onlinesys.necta.go.tz/results/2023/csee/results/s5555.htm" target="_blank">View Results</a></td>
-                 </tr>
+                    </tr>
                     <tr>
                         <td>2022</td>
                         <td>68</td>
@@ -863,7 +882,7 @@
                         <td>0</td>
                         <td>0</td>
                         <td><a href="https://onlinesys.necta.go.tz/results/2022/csee/results/s5555.htm" target="_blank">View Results</a></td>
-                 </tr>
+                    </tr>
                     <tr>
                         <td>2021</td>
                         <td>63</td>
@@ -872,7 +891,7 @@
                         <td>0</td>
                         <td>0</td>
                         <td><a href="https://maktaba.tetea.org/exam-results/CSEE2021/s5555.htm" target="_blank">View Results</a></td>
-                  </tr>
+                    </tr>
                     <tr>
                         <td>2020</td>
                         <td>66</td>
@@ -881,14 +900,14 @@
                         <td>0</td>
                         <td>0</td>
                         <td><a href="https://maktaba.tetea.org/exam-results/CSEE2020/s5555.htm" target="_blank">View Results</a></td>
-                 </tr>
+                    </tr>
                 </tbody>
             </table>
             
             <p class="text-center">We take pride in our consistent outstanding performance in national examinations. Our dedicated teachers and comprehensive learning approach ensure that every student at Kemebos Schools achieves academic success.</p>
             
             <div class="results-btn">
-               <li></li> <a href="academics2.html" class="btn btn-red" target="_blank">View Past Results</a></div></div>li>
+                <a href="academics2.html" class="btn btn-red" target="_blank">View Past Results</a>
             </div>
         </div>
     </section>
@@ -925,7 +944,7 @@
                 <p>Located in the heart of Kagera Region, Bukoba Tanzania, just 6km from Bukoba Municipal, our campus provides a serene environment perfect for learning and personal growth. We focus on our students' enlightenment, care, and success both academically and socially.</p>
                 <p>At Kemebos, we believe education is more than just academics. We nurture well-rounded individuals through our comprehensive programs that include leadership training, sports, arts, and community service. Our alumni have gone on to excel in various fields both nationally and internationally, a testament to the strong foundation they received at our institution.</p>
                 
-                <a href="aboutus.html">Learn More About Us</a>
+                <a href="aboutus.html" class="btn">Learn More About Us</a>
             </div>
         </div>
     </section>
@@ -945,10 +964,13 @@
                         <p><i class="fas fa-envelope"></i> info@kemebos.ac.tz</p>
                         <p><i class="fas fa-map-marker-alt"></i> Ijuganyondo, Bukoba, Kagera, Tanzania</p>
                     </div>
+                    <p>Your success is our priority! Don't hesitate to contact us anytime—we're here to help you every step of the way.</p>
+                    <p>Questions? Concerns? Ideas? We're just a message away! Reach out anytime, and we'll respond promptly.</p>
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <h3>Send Us a Message</h3>
+                    <form action="https://formspree.io/f/mqaqbakk" method="POST">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" required>
@@ -984,16 +1006,16 @@
                     <h3>About Kemebos</h3>
                     <p>Kemebos Schools is a premier educational institution in Tanzania, committed to academic excellence and holistic student development since 2007.</p>
                     <div class="social-links">
-                    <a href="https://www.facebook.com/groups/105143769529637/"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/kemebosandkaizirege/?hl=en"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                        <a href="https://www.facebook.com/groups/105143769529637/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/kemebosandkaizirege/?hl=en"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 
                 <div class="footer-col">
                     <h3>Programs</h3>
-                    <ul>
+                    <ul class="quick-links">
                         <li><a href="aboutus.html">Primary Education</a></li>
                         <li><a href="aboutus.html">Secondary Education (O-Level)</a></li>
                         <li><a href="aboutus.html">Advanced Level (A-Level)</a></li>
@@ -1004,7 +1026,7 @@
                 
                 <div class="footer-col">
                     <h3>Quick Links</h3>
-                    <ul>
+                    <ul class="quick-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="aboutus.html">About Us</a></li>
                         <li><a href="admission.html">Admission</a></li>
@@ -1017,9 +1039,19 @@
                 <div class="footer-col">
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter to receive updates on school news and events.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email" required>
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    <form class="newsletter-form" action="https://formspree.io/f/mqaqbakk" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message (Optional)"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Subscribe
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1029,8 +1061,7 @@
             </div>
         </div>
     </footer>
-    
-    <script>
+<script>
         // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');
         const mobileNav = document.querySelector('.mobile-nav');
