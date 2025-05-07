@@ -93,73 +93,72 @@
             transition: all 0.3s ease;
         }
         
-        /* Default desktop styles (outside media query) */
-.nav-menu {
-    display: flex;
-    list-style: none;
-}
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
 
-.nav-menu li {
-    margin-left: 30px;
-}
+        .nav-menu li {
+            margin-left: 30px;
+        }
 
-.nav-menu a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-    position: relative;
-}
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
 
-.nav-menu a:hover {
-    color: var(--gold);
-}
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
 
-/* Mobile styles (inside media query) */
-@media (max-width: 768px) {
-    .hamburger-menu {
-        display: flex;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: calc(100vh - 70px);
-        background-color: var(--black);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        transition: all 0.5s ease;
-        padding: 20px 0;
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li {
-        margin: 15px 0;
-        width: 100%;
-        text-align: center;
-    }
-    
-    /* Hamburger animation */
-    .hamburger-menu.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger-menu.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-}
-
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 70px);
+                background-color: var(--black);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                transition: all 0.5s ease;
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Hamburger animation */
+            .hamburger-menu.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger-menu.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
         
         /* Hero Section */
         .hero {
@@ -446,33 +445,48 @@
             transform: translateY(-5px);
         }
         
+        /* Newsletter Form Styles */
         .newsletter-form {
             display: flex;
+            flex-direction: column;
+            gap: 15px;
             margin-top: 20px;
         }
         
-        .newsletter-form input {
-            width: 70%;
-            padding: 10px;
+        .newsletter-form input,
+        .newsletter-form textarea {
+            width: 100%;
+            padding: 12px;
             border: none;
-            border-radius: 5px 0 0 5px;
+            border-radius: 5px;
             font-size: 0.9rem;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .newsletter-form textarea {
+            min-height: 100px;
+            resize: vertical;
         }
         
         .newsletter-form button {
-            width: 30%;
             background-color: var(--gold);
             color: var(--black);
             border: none;
-            border-radius: 0 5px 5px 0;
+            padding: 12px 20px;
+            border-radius: 5px;
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .newsletter-form button:hover {
             background-color: var(--dark-gold);
+            transform: translateY(-2px);
         }
         
         .copyright {
@@ -495,31 +509,6 @@
         }
         
         @media (max-width: 768px) {
-            .hamburger-menu {
-                display: flex;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--black);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.5s ease;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu li {
-                margin: 20px 0;
-            }
-            
             .hero-content h1 {
                 font-size: 2.5rem;
             }
@@ -737,7 +726,6 @@
                                 <td><a href="https://maktaba.tetea.org/exam-results/CSEE2020/s5555.htm" class="results-link" target="_blank">View Results</a></td>
                             </tr>
                         </tbody>
-                </tbody>
                     </table>
                 </div>
                 
@@ -867,11 +855,11 @@
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
                     <li><a href="index.html">Home</a></li>
-                        <li><a href="aboutus.html">About Us</a></li>
-                        <li><a href="admission.html">Admission</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="academics2.html">Academics</a></li>
-                        <li><a href="schoollife.html">School Life</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="academics2.html">Academics</a></li>
+                    <li><a href="schoollife.html">School Life</a></li>
                 </ul>
             </div>
             
@@ -887,11 +875,16 @@
             </div>
             
             <div class="footer-col">
-                <h4>Newsletter</h4>
-                <p>Subscribe to our newsletter to receive updates on school news, events, and achievements.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your Email">
-                    <button type="submit">Subscribe</button>
+                <h4>Contact Us</h4>
+                <p>Have questions or want to learn more about our programs? Send us a message and we'll get back to you promptly.</p>
+                
+                <form class="newsletter-form" action="https://formspree.io/f/mqaqbakk" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email Address" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
                 </form>
             </div>
         </div>
