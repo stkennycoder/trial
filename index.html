@@ -115,7 +115,7 @@
             text-align: center;
         }
         
-        /* Header Styles */
+                /* Header Styles */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -270,7 +270,6 @@
             opacity: 1;
             visibility: visible;
         }
-        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
@@ -740,18 +739,19 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="logo.png" alt="Kemebos Schools Logo">
+                <img src="D:\project\logo.png" alt="Kemebos Schools Logo">
                 <h1>Kemebos <span>Schools</span></h1>
             </div>
             
             <nav>
                 <ul>
-                    <li><a href="home2.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html" class="active">About Us</a></li>
                     <li><a href="academics2.html">Academics</a></li>
                     <li><a href="schoollife.html">School Life</a></li>
                     <li><a href="admission.html">Admission</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
+                    
                 </ul>
             </nav>
             
@@ -765,10 +765,12 @@
             
             <div class="mobile-nav">
                 <ul>
-                    <li><a href="home2.html">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="academics2.html">Admission</a></li>
-                    <li><a href="#schoollife.html">SchoolLife</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html" class="active">About Us</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="schoollife.html">School Life</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
                 </ul>
             </div>
         </div>
@@ -1050,57 +1052,33 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                if(this.classList.contains('btn') {
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                    
-                    // Close mobile menu if open
-                    hamburger.classList.remove('active');
-                    mobileNav.classList.remove('active');
-                    overlay.classList.remove('active');
-                } else {
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if(targetId === '#home') {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    } else if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                    
-                    // Close mobile menu if open
-                    hamburger.classList.remove('active');
-                    mobileNav.classList.remove('active');
-                    overlay.classList.remove('active');
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
+                
+                // Close mobile menu if open
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
             });
         });
         
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        
-        if(contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Here you would typically send the form data to a server
-               
+        // Highlight current page in navigation
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a, .mobile-nav a').forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if(currentPage === linkPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
