@@ -93,57 +93,73 @@
             transition: all 0.3s ease;
         }
         
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 30px;
-        }
-        
-        .nav-menu a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--gold);
-        }
-        
- .nav-menu {
+        /* Default desktop styles (outside media query) */
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 30px;
+}
+
+.nav-menu a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: var(--gold);
+}
+
+/* Mobile styles (inside media query) */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+    
+    .nav-menu {
         position: fixed;
         top: 70px;
         left: -100%;
-        width: 80%; /* Changed from 100% to 80% */
-        max-width: 300px; /* Added max-width */
-        height: auto; /* Changed from calc(100vh - 70px) to auto */
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
         background-color: var(--black);
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; /* Changed from center */
+        justify-content: flex-start;
         transition: all 0.5s ease;
         padding: 20px 0;
-        border-radius: 0 0 10px 0;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     }
-         .nav-menu li {
-        margin: 15px 0; /* Reduced margin */
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        margin: 15px 0;
         width: 100%;
         text-align: center;
     }
     
-    .nav-menu a {
-        padding: 10px 0;
-        display: block;
-        width: 100%;
+    /* Hamburger animation */
+    .hamburger-menu.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
     }
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
+    
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-menu.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
         
         /* Hero Section */
         .hero {
@@ -553,6 +569,7 @@
                 <span></span>
                 <span></span>
             </div>
+
             
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Home</a></li>
@@ -838,11 +855,11 @@
             <div class="footer-col">
                 <h4>About Us</h4>
                 <p>Kemebos Schools is a premier educational institution committed to academic excellence and character development since our establishment in 2007.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+               <div class="social-links">
+                    <a href="https://www.facebook.com/groups/105143769529637/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/kemebosandkaizirege/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.threads.com/@kemebosandkaizirege"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -885,7 +902,7 @@
     </footer>
     
     <!-- JavaScript -->
-   <script>
+    <script>
         // Hamburger Menu Toggle
         const hamburgerMenu = document.getElementById('hamburger-menu');
         const navMenu = document.getElementById('nav-menu');
