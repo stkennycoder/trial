@@ -320,17 +320,34 @@
             transform: translateY(-3px);
         }
 
+        /* Improved Newsletter Form Styles */
         .newsletter-form {
             margin-top: 1.5rem;
         }
 
-        .newsletter-form input {
+        .newsletter-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .newsletter-form input,
+        .newsletter-form textarea {
             width: 100%;
             padding: 0.8rem;
             border: none;
             border-radius: 5px;
-            margin-bottom: 1rem;
             font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .newsletter-form textarea {
+            min-height: 100px;
+            resize: vertical;
         }
 
         .newsletter-form button {
@@ -342,6 +359,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .newsletter-form button:hover {
@@ -737,11 +759,23 @@
             </div>
             
             <div class="footer-column">
-                <h3>Newsletter</h3>
-                <p>Subscribe to our newsletter to receive updates on school news and events.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your Email Address" required>
-                    <button type="submit">Subscribe</button>
+                <h3>Contact Us</h3>
+                <form class="newsletter-form" action="https://formspree.io/f/mqaqbakk" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
                 </form>
             </div>
         </div>
